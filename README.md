@@ -181,4 +181,12 @@ MAVEN_REPO=https://nexus.company.com/repository/maven-public java LibUp.java
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 详见 LICENSE 文件。
+本项目采用 [MIT 许可证](LICENSE) - 详见 [LICENSE](LICENSE) 文件。
+
+MIT 许可证是一种宽松的开源许可证，允许：
+- ✅ 商业使用
+- ✅ 修改和分发
+- ✅ 私人使用
+- ✅ 专利使用
+
+只需要保留版权声明和许可证声明即可。
