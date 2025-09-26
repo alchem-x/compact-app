@@ -40,7 +40,8 @@ check_java() {
         exit 1
     fi
 
-    local java_version=$(java -version 2>&1 | head -n1 | cut -d'"' -f2)
+    local java_version
+    java_version=$(java -version 2>&1 | head -n1 | cut -d'"' -f2)
     print_info "Using Java version: $java_version"
 }
 
@@ -59,18 +60,19 @@ check_files() {
 
     if [[ ! -f "$LIB_FILE" ]]; then
         print_warning "Dependency file '$LIB_FILE' not found"
-        print_info "You need to run LibUp.java first to download dependencies"
+        print_info "You need to run lib-up.sh first to download dependencies"
     fi
 }
 
 # Download dependencies if needed
 download_dependencies() {
-    local jar_count=$(find "$LIB_DIR" -name "*.jar" 2>/dev/null | wc -l)
+    local jar_count
+    jar_count=$(find "$LIB_DIR" -name "*.jar" 2>/dev/null | wc -l)
 
     if [[ $jar_count -eq 0 ]]; then
         if [[ -f "$LIB_FILE" ]]; then
             print_info "No JAR files found in $LIB_DIR, downloading dependencies..."
-            if java LibUp.java; then
+            if ./lib-up.sh; then
                 print_success "Dependencies downloaded successfully"
             else
                 print_error "Failed to download dependencies"
@@ -78,7 +80,7 @@ download_dependencies() {
             fi
         else
             print_error "No dependencies found and $LIB_FILE is missing"
-            print_info "Please create $LIB_FILE with your dependencies and run LibUp.java first"
+            print_info "Please create $LIB_FILE with your dependencies and run lib-up.sh first"
             exit 1
         fi
     else
