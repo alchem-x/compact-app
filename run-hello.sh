@@ -60,7 +60,7 @@ check_files() {
 
     if [[ ! -f "$LIB_FILE" ]]; then
         print_warning "Dependency file '$LIB_FILE' not found"
-        print_info "You need to run lib-up.sh first to download dependencies"
+        print_info "You need to run libup.sh first to download dependencies"
     fi
 }
 
@@ -72,7 +72,7 @@ download_dependencies() {
     if [[ $jar_count -eq 0 ]]; then
         if [[ -f "$LIB_FILE" ]]; then
             print_info "No JAR files found in $LIB_DIR, downloading dependencies..."
-            if ./lib-up.sh; then
+            if ./libup.sh; then
                 print_success "Dependencies downloaded successfully"
             else
                 print_error "Failed to download dependencies"
@@ -80,7 +80,7 @@ download_dependencies() {
             fi
         else
             print_error "No dependencies found and $LIB_FILE is missing"
-            print_info "Please create $LIB_FILE with your dependencies and run lib-up.sh first"
+            print_info "Please create $LIB_FILE with your dependencies and run libup.sh first"
             exit 1
         fi
     else

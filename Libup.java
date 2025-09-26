@@ -1,4 +1,3 @@
-import module java.base;
 import module java.net.http;
 
 void main() {
@@ -49,7 +48,7 @@ void downloadIfNeeded(String[] parts, String mavenRepo) throws IOException {
     try {
         var response = sendHttpRequest(url);
         if (response.statusCode() != 200) throw new IOException("Failed to download: HTTP " + response.statusCode());
-        Files.copy((InputStream) response.body(), outputPath, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(response.body(), outputPath, StandardCopyOption.REPLACE_EXISTING);
         IO.println("  Downloaded: " + jarName);
     } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
@@ -57,7 +56,7 @@ void downloadIfNeeded(String[] parts, String mavenRepo) throws IOException {
     }
 }
 
-HttpResponse sendHttpRequest(String url) throws IOException, InterruptedException {
+HttpResponse<InputStream> sendHttpRequest(String url) throws IOException, InterruptedException {
     var client = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).connectTimeout(Duration.ofSeconds(10)).build();
     var request = HttpRequest.newBuilder().uri(URI.create(url)).header("User-Agent", "LibUp/1.0").timeout(Duration.ofSeconds(30)).GET().build();
     return client.send(request, HttpResponse.BodyHandlers.ofInputStream());

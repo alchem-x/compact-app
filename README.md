@@ -14,8 +14,8 @@
 
 ```
 compact-app/
-├── LibUp.java          # Java 版本依赖下载器
-├── lib-up.sh           # Shell 版本依赖下载器
+├── Libup.java          # Java 版本依赖下载器
+├── libup.sh           # Shell 版本依赖下载器
 ├── Hello.java          # 示例应用程序
 ├── lib.txt             # 依赖列表文件
 ├── run-hello.sh        # 运行脚本
@@ -40,10 +40,10 @@ com.google.guava:guava:31.1-jre
 
 ```bash
 # Java 版本
-java LibUp.java
+java Libup.java
 
 # Shell 版本（推荐，更快）
-./lib-up.sh
+./libup.sh
 ```
 
 ### 3. 运行示例
@@ -58,14 +58,14 @@ java LibUp.java
 
 #### Java 版本
 ```bash
-java LibUp.java
-MAVEN_REPO=https://nexus.company.com java LibUp.java
+java Libup.java
+MAVEN_REPO=https://nexus.company.com java Libup.java
 ```
 
 #### Shell 版本（推荐）
 ```bash
-./lib-up.sh
-MAVEN_REPO=https://nexus.company.com ./lib-up.sh
+./libup.sh
+MAVEN_REPO=https://nexus.company.com ./libup.sh
 ```
 
 功能特性：
@@ -123,10 +123,10 @@ com.google.guava:guava:31.1-jre
 ```bash
 # 使用阿里云 Maven 镜像（Java 版本）
 export MAVEN_REPO=https://maven.aliyun.com/repository/central
-java LibUp.java
+java Libup.java
 
 # 使用公司私有仓库（Shell 版本）
-MAVEN_REPO=https://nexus.company.com ./lib-up.sh
+MAVEN_REPO=https://nexus.company.com ./libup.sh
 ```
 
 ## 🏗️ 技术栈
@@ -143,14 +143,14 @@ MAVEN_REPO=https://nexus.company.com ./lib-up.sh
 
 ## 📊 版本对比
 
-| 特性 | Java 版本 | Shell 版本 |
-|------|-----------|------------|
-| 启动速度 | 需要 JVM 启动 | 立即执行 |
-| 依赖 | Java 25+ | Bash + curl |
-| 错误处理 | Java 异常机制 | Shell 错误检测 |
-| 跨平台 | 支持 Java 25 的平台 | Unix/Linux/macOS |
-| 代码行数 | 63 行 | 45 行 |
-| 执行方式 | `java LibUp.java` | `./lib-up.sh` |
+| 特性 | Java 版本           | Shell 版本 |
+|------|-------------------|------------|
+| 启动速度 | 需要 JVM 启动         | 立即执行 |
+| 依赖 | Java 25+          | Bash + curl |
+| 错误处理 | Java 异常机制         | Shell 错误检测 |
+| 跨平台 | 支持 Java 25 的平台    | Unix/Linux/macOS |
+| 代码行数 | 63 行              | 45 行 |
+| 执行方式 | `java Libup.java` | `./libup.sh` |
 
 ## 🎯 项目亮点
 
