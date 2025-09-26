@@ -1,5 +1,10 @@
 import module java.net.http;
 
+private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
+        .followRedirects(HttpClient.Redirect.NORMAL)
+        .connectTimeout(Duration.ofSeconds(10))
+        .build();
+
 void main() {
     var mavenRepo = Optional.ofNullable(System.getenv("MAVEN_REPO")).filter(s -> !s.isBlank()).orElse("https://repo1.maven.org/maven2");
     IO.println("Using Maven repository: " + mavenRepo);
@@ -57,7 +62,6 @@ void downloadIfNeeded(String[] parts, String mavenRepo) throws IOException {
 }
 
 HttpResponse<InputStream> sendHttpRequest(String url) throws IOException, InterruptedException {
-    var client = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NORMAL).connectTimeout(Duration.ofSeconds(10)).build();
-    var request = HttpRequest.newBuilder().uri(URI.create(url)).header("User-Agent", "LibUp/1.0").timeout(Duration.ofSeconds(30)).GET().build();
-    return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+    var request = HttpRequest.newBuilder().uri(URI.create(url)).header("User-Agent", "Libup/1.0").timeout(Duration.ofSeconds(30)).GET().build();
+    return HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofInputStream());
 }

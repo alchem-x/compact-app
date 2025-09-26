@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# LibUp Shell Version - Downloads dependencies from Maven repository
+# Libup Shell Version - Downloads dependencies from Maven repository
 
 MAVEN_REPO="${MAVEN_REPO:-https://repo1.maven.org/maven2}"
 echo "Using Maven repository: $MAVEN_REPO"
@@ -33,7 +33,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
         url="$MAVEN_REPO/${group_id//\./\//}/$artifact_id/$version/$jar_name"
         echo "  Downloading from: $url"
 
-        if curl -sSf -L -A "LibUp/1.0" --max-time 30 -o "$output_path" "$url"; then
+        if curl -sSf -L -A "Libup/1.0" --max-time 30 -o "$output_path" "$url"; then
             echo "  Downloaded: $jar_name"
         else
             echo "  Error downloading $jar_name"
